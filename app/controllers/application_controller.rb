@@ -6,8 +6,13 @@ class ApplicationController < ActionController::Base
   before_action :set_board
   def set_board
     @board = Board.find_by(seo_name:params[:board])
+    if @board == nil
+      not_found
+    end
     default_url_options[:board] = params[:board]
   end
-
   after_action :prepare_unobtrusive_flash
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

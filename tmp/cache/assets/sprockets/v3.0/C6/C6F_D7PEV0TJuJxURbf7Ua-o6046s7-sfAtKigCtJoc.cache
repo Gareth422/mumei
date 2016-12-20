@@ -1,0 +1,72 @@
+I"=(function() {
+  var currentTopicId, insertRef, loadReplyForm, prepareHideLink, prepareUrl, replyContainer;
+
+  replyContainer = null;
+
+  currentTopicId = null;
+
+  $(function() {
+    return $('.topic').on('click', '.actions .reply', function(e) {
+      var pos, textArea, topicId;
+      e.preventDefault();
+      topicId = $(e.delegateTarget).data('id');
+      pos = $(e.target).parents('.post').data('pos');
+      replyContainer = $('#reply-container');
+      replyContainer.show();
+      if (replyContainer.length) {
+        textArea = replyContainer.find('textarea');
+        if (currentTopicId === topicId) {
+          if (pos === 1) {
+            textArea.focus();
+          } else {
+            insertRef(textArea, pos);
+          }
+        } else if (textArea.val() === '' || confirm('You are about to switch thread which would cause currently unsaved reply to be cleared. Continue?')) {
+          replyContainer.remove();
+          replyContainer = [];
+        }
+      }
+      if (!replyContainer.length) {
+        return loadReplyForm(prepareUrl(e.target.getAttribute('href')), topicId, pos);
+      }
+    });
+  });
+
+  insertRef = function(textarea, ref) {
+    var t;
+    t = textarea.val();
+    if (t.length > 0) {
+      t = t + "\n";
+    }
+    t = t + ("> " + ref + "\n");
+    textarea.val(t).focus();
+    return textarea[0].scrollTop = textarea[0].scrollHeight;
+  };
+
+  loadReplyForm = function(url, topicId, pos) {
+    return $.get(url, {
+      topic_id: topicId
+    }).done(function(html) {
+      $('body>footer').before("<div id='reply-container'>" + html + "</div>");
+      if (pos !== 1) {
+        insertRef($('#reply-container').find('textarea'), pos);
+      }
+      currentTopicId = topicId;
+      new ImageUpload($('#reply-container form'));
+      return prepareHideLink();
+    });
+  };
+
+  prepareHideLink = function() {
+    replyContainer = $('#reply-container');
+    return replyContainer.find(".actions a.hide-link").click(function() {
+      return replyContainer.hide();
+    });
+  };
+
+  prepareUrl = function(path) {
+    return path.replace(/topics.*/, 'posts/new');
+  };
+
+}).call(this);
+:ET

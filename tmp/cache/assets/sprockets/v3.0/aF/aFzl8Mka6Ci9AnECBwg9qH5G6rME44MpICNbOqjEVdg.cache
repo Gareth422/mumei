@@ -1,0 +1,19 @@
+I"Â(function() {
+  $(document).on('click', '[data-behavior=view-omitted]', function(e) {
+    var $target, request, url;
+    e.preventDefault();
+    $target = $(e.target);
+    url = ($target.attr('href')) + "/omitted";
+    request = $.ajax({
+      url: url,
+      method: 'GET',
+      dataType: 'html'
+    });
+    return request.done(function(msg) {
+      $target.parent().replaceWith(msg);
+      return PostHandle.apply();
+    });
+  });
+
+}).call(this);
+:ET

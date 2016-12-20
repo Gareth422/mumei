@@ -1,0 +1,1085 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'schema_migrations'
+  [1m[36m (0.8ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'posts'[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'boards'[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 1"], ["seo_name", "board1"], ["created_at", "2016-12-19 19:55:51.345982"], ["updated_at", "2016-12-19 19:55:51.345982"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'topics'[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.383473"], ["updated_at", "2016-12-19 19:55:51.383473"], ["bumped_at", "2016-12-19 19:55:51.383818"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.389108"], ["updated_at", "2016-12-19 19:55:51.389108"], ["bumped_at", "2016-12-19 19:55:51.389379"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.393505"], ["updated_at", "2016-12-19 19:55:51.393505"], ["bumped_at", "2016-12-19 19:55:51.394015"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.398403"], ["updated_at", "2016-12-19 19:55:51.398403"], ["bumped_at", "2016-12-19 19:55:51.398674"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.403098"], ["updated_at", "2016-12-19 19:55:51.403098"], ["bumped_at", "2016-12-19 19:55:51.403367"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 4[0m  [["board_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 2)  [["board_id", 1]]
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 1[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 2"], ["seo_name", "board2"], ["created_at", "2016-12-19 19:55:51.486525"], ["updated_at", "2016-12-19 19:55:51.486525"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.492235"], ["updated_at", "2016-12-19 19:55:51.492235"], ["bumped_at", "2016-12-19 19:55:51.492559"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.497855"], ["updated_at", "2016-12-19 19:55:51.497855"], ["bumped_at", "2016-12-19 19:55:51.498161"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.503903"], ["updated_at", "2016-12-19 19:55:51.503903"], ["bumped_at", "2016-12-19 19:55:51.504174"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.508679"], ["updated_at", "2016-12-19 19:55:51.508679"], ["bumped_at", "2016-12-19 19:55:51.508944"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.513024"], ["updated_at", "2016-12-19 19:55:51.513024"], ["bumped_at", "2016-12-19 19:55:51.513357"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 3"], ["seo_name", "board3"], ["created_at", "2016-12-19 19:55:51.517600"], ["updated_at", "2016-12-19 19:55:51.517600"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:55:51.522027"], ["updated_at", "2016-12-19 19:55:51.522027"], ["bumped_at", "2016-12-19 19:55:51.522288"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.6ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" ASC LIMIT 1[0m  [["board_id", 1]]
+  [1m[35mTopic Load (0.3ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 1  [["board_id", 1]]
+  [1m[36mTopic Load (0.9ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" IN (1, 5)[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 5]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?[0m  [["board_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 4"], ["seo_name", "board4"], ["created_at", "2016-12-19 19:55:51.552355"], ["updated_at", "2016-12-19 19:55:51.552355"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.557476"], ["updated_at", "2016-12-19 19:55:51.557476"], ["bumped_at", "2016-12-19 19:55:51.557801"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.561999"], ["updated_at", "2016-12-19 19:55:51.561999"], ["bumped_at", "2016-12-19 19:55:51.562275"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.566686"], ["updated_at", "2016-12-19 19:55:51.566686"], ["bumped_at", "2016-12-19 19:55:51.566958"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.571307"], ["updated_at", "2016-12-19 19:55:51.571307"], ["bumped_at", "2016-12-19 19:55:51.571762"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.575849"], ["updated_at", "2016-12-19 19:55:51.575849"], ["bumped_at", "2016-12-19 19:55:51.576127"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 5"], ["seo_name", "board5"], ["created_at", "2016-12-19 19:55:51.580413"], ["updated_at", "2016-12-19 19:55:51.580413"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:55:51.585027"], ["updated_at", "2016-12-19 19:55:51.585027"], ["bumped_at", "2016-12-19 19:55:51.585349"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36mTopic Load (0.5ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 6[0m  [["board_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 6"], ["seo_name", "board6"], ["created_at", "2016-12-19 19:55:51.600903"], ["updated_at", "2016-12-19 19:55:51.600903"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.606190"], ["updated_at", "2016-12-19 19:55:51.606190"], ["bumped_at", "2016-12-19 19:55:51.606478"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.610865"], ["updated_at", "2016-12-19 19:55:51.610865"], ["bumped_at", "2016-12-19 19:55:51.611187"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.615623"], ["updated_at", "2016-12-19 19:55:51.615623"], ["bumped_at", "2016-12-19 19:55:51.615897"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.620357"], ["updated_at", "2016-12-19 19:55:51.620357"], ["bumped_at", "2016-12-19 19:55:51.620673"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.625285"], ["updated_at", "2016-12-19 19:55:51.625285"], ["bumped_at", "2016-12-19 19:55:51.625555"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 3[0m  [["board_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 3)  [["board_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT  "topics"."id" FROM "topics"  ORDER BY "topics"."id" ASC LIMIT 2[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 7"], ["seo_name", "board7"], ["config", "---\nfoo: 7\n"], ["created_at", "2016-12-19 19:55:51.657550"], ["updated_at", "2016-12-19 19:55:51.657550"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 8"], ["seo_name", "board8"], ["created_at", "2016-12-19 19:55:51.663907"], ["updated_at", "2016-12-19 19:55:51.663907"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 9"], ["seo_name", "board9"], ["config", "---\nfoo: 9\n"], ["created_at", "2016-12-19 19:55:51.669166"], ["updated_at", "2016-12-19 19:55:51.669166"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 10"], ["seo_name", "board10"], ["created_at", "2016-12-19 19:55:51.677258"], ["updated_at", "2016-12-19 19:55:51.677258"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.682461"], ["updated_at", "2016-12-19 19:55:51.682461"], ["bumped_at", "2016-12-19 19:55:51.682746"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.0ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'images'
+  [1m[36m (0.0ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'replies'[0m
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "options_raw", "options", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "foo"], ["content_html", "<p>foo</p>"], ["options_raw", "sage"], ["options", "---\n- sage\n"], ["created_at", "2016-12-19 19:55:56.688033"], ["updated_at", "2016-12-19 19:55:56.688033"], ["pos", 1]]
+  [1m[35mSQL (0.0ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTopic Load (0.0ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 11"], ["seo_name", "board11"], ["created_at", "2016-12-19 19:55:51.896455"], ["updated_at", "2016-12-19 19:55:51.896455"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 12"], ["seo_name", "board12"], ["created_at", "2016-12-19 19:55:51.905724"], ["updated_at", "2016-12-19 19:55:51.905724"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 13"], ["seo_name", "board13"], ["created_at", "2016-12-19 19:55:51.914951"], ["updated_at", "2016-12-19 19:55:51.914951"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:51.920309"], ["updated_at", "2016-12-19 19:55:51.920309"], ["bumped_at", "2016-12-19 19:55:51.920605"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:55:51.932682"], ["updated_at", "2016-12-19 19:55:51.932682"]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:55:51.935601', "bumped_at" = '2016-12-19 19:55:51.935601' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1  [["topic_id", 1]]
+  [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:55:51.965543"], ["updated_at", "2016-12-19 19:55:51.965543"], ["pos", 2]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:55:51.971786', "bumped_at" = '2016-12-19 19:55:51.971786' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.9ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" IN (1, 2)[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.2ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1\n > 2 bar"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a></quote>\n<br /> <a href=\"/board13/topics/1#p-1-2\">&gt; 2</a> bar</p>"], ["created_at", "2016-12-19 19:55:52.007771"], ["updated_at", "2016-12-19 19:55:52.007771"], ["pos", 3]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 3]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.015877', "bumped_at" = '2016-12-19 19:55:52.015877' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 3 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?  [["ancestor_id", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?[0m  [["ancestor_id", 2]]
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 14"], ["seo_name", "board14"], ["created_at", "2016-12-19 19:55:52.039068"], ["updated_at", "2016-12-19 19:55:52.039068"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:55:52.044323"], ["updated_at", "2016-12-19 19:55:52.044323"], ["bumped_at", "2016-12-19 19:55:52.044667"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:55:52.056569"], ["updated_at", "2016-12-19 19:55:52.056569"]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.058974', "bumped_at" = '2016-12-19 19:55:52.058974' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.2ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:55:52.083040"], ["updated_at", "2016-12-19 19:55:52.083040"], ["pos", 2]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.088472', "bumped_at" = '2016-12-19 19:55:52.088472' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "max_pos" = 42 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.4ms)[0m  UPDATE "posts" SET "pos" = 42 WHERE "posts"."id" = ?  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 42  [["topic_id", 1]]
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.2ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 42 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-42\">&gt; 42</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:55:52.115647"], ["updated_at", "2016-12-19 19:55:52.115647"], ["pos", 43]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.121024', "bumped_at" = '2016-12-19 19:55:52.121024' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 43 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 15"], ["seo_name", "board15"], ["created_at", "2016-12-19 19:55:52.130446"], ["updated_at", "2016-12-19 19:55:52.130446"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "topics" ("title", "board_id", "locked", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["locked", "t"], ["created_at", "2016-12-19 19:55:52.134719"], ["updated_at", "2016-12-19 19:55:52.134719"], ["bumped_at", "2016-12-19 19:55:52.135239"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 16"], ["seo_name", "board16"], ["created_at", "2016-12-19 19:55:52.158929"], ["updated_at", "2016-12-19 19:55:52.158929"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", "2016-12-19 19:55:52.172826"], ["updated_at", "2016-12-19 19:55:52.172826"], ["bumped_at", "2016-12-19 19:55:52.173208"]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:55:52.179883"], ["updated_at", "2016-12-19 19:55:52.179883"], ["pos", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.182280', "bumped_at" = '2016-12-19 19:55:52.182280' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 17"], ["seo_name", "board17"], ["created_at", "2016-12-19 19:55:52.195223"], ["updated_at", "2016-12-19 19:55:52.195223"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 18"], ["seo_name", "board18"], ["created_at", "2016-12-19 19:55:52.202776"], ["updated_at", "2016-12-19 19:55:52.202776"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 19"], ["seo_name", "board19"], ["created_at", "2016-12-19 19:55:52.216987"], ["updated_at", "2016-12-19 19:55:52.216987"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)  [["board_id", 1], ["created_at", "2016-12-19 19:55:52.229470"], ["updated_at", "2016-12-19 19:55:52.229470"], ["bumped_at", "2016-12-19 19:55:52.229860"]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:55:52.236454"], ["updated_at", "2016-12-19 19:55:52.236454"], ["pos", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:55:52.238671', "bumped_at" = '2016-12-19 19:55:52.238671' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 20"], ["seo_name", "board20"], ["created_at", "2016-12-19 19:55:52.251254"], ["updated_at", "2016-12-19 19:55:52.251254"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 21"], ["seo_name", "board21"], ["created_at", "2016-12-19 19:55:52.266505"], ["updated_at", "2016-12-19 19:55:52.266505"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 22"], ["seo_name", "board22"], ["created_at", "2016-12-19 19:55:52.282140"], ["updated_at", "2016-12-19 19:55:52.282140"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 23"], ["seo_name", "board23"], ["created_at", "2016-12-19 19:55:52.296950"], ["updated_at", "2016-12-19 19:55:52.296950"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'schema_migrations'
+  [1m[36m (0.9ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'posts'[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'boards'[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 1"], ["seo_name", "board1"], ["created_at", "2016-12-19 19:57:23.831668"], ["updated_at", "2016-12-19 19:57:23.831668"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'topics'[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.866214"], ["updated_at", "2016-12-19 19:57:23.866214"], ["bumped_at", "2016-12-19 19:57:23.866553"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.871372"], ["updated_at", "2016-12-19 19:57:23.871372"], ["bumped_at", "2016-12-19 19:57:23.871645"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.875843"], ["updated_at", "2016-12-19 19:57:23.875843"], ["bumped_at", "2016-12-19 19:57:23.876111"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.880291"], ["updated_at", "2016-12-19 19:57:23.880291"], ["bumped_at", "2016-12-19 19:57:23.880558"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.884690"], ["updated_at", "2016-12-19 19:57:23.884690"], ["bumped_at", "2016-12-19 19:57:23.885022"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 4[0m  [["board_id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 2)  [["board_id", 1]]
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 1[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 2"], ["seo_name", "board2"], ["created_at", "2016-12-19 19:57:23.967297"], ["updated_at", "2016-12-19 19:57:23.967297"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.972276"], ["updated_at", "2016-12-19 19:57:23.972276"], ["bumped_at", "2016-12-19 19:57:23.972559"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.976848"], ["updated_at", "2016-12-19 19:57:23.976848"], ["bumped_at", "2016-12-19 19:57:23.977129"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.981847"], ["updated_at", "2016-12-19 19:57:23.981847"], ["bumped_at", "2016-12-19 19:57:23.982161"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.986873"], ["updated_at", "2016-12-19 19:57:23.986873"], ["bumped_at", "2016-12-19 19:57:23.987203"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:23.992054"], ["updated_at", "2016-12-19 19:57:23.992054"], ["bumped_at", "2016-12-19 19:57:23.992359"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 3"], ["seo_name", "board3"], ["created_at", "2016-12-19 19:57:23.996096"], ["updated_at", "2016-12-19 19:57:23.996096"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:57:24.000424"], ["updated_at", "2016-12-19 19:57:24.000424"], ["bumped_at", "2016-12-19 19:57:24.000693"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" ASC LIMIT 1[0m  [["board_id", 1]]
+  [1m[35mTopic Load (0.3ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 1  [["board_id", 1]]
+  [1m[36mTopic Load (0.8ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" IN (1, 5)[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 5]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?[0m  [["board_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 4"], ["seo_name", "board4"], ["created_at", "2016-12-19 19:57:24.026261"], ["updated_at", "2016-12-19 19:57:24.026261"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.031004"], ["updated_at", "2016-12-19 19:57:24.031004"], ["bumped_at", "2016-12-19 19:57:24.031328"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.035549"], ["updated_at", "2016-12-19 19:57:24.035549"], ["bumped_at", "2016-12-19 19:57:24.035821"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.039932"], ["updated_at", "2016-12-19 19:57:24.039932"], ["bumped_at", "2016-12-19 19:57:24.040206"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.044310"], ["updated_at", "2016-12-19 19:57:24.044310"], ["bumped_at", "2016-12-19 19:57:24.044611"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.048682"], ["updated_at", "2016-12-19 19:57:24.048682"], ["bumped_at", "2016-12-19 19:57:24.048950"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 5"], ["seo_name", "board5"], ["created_at", "2016-12-19 19:57:24.052812"], ["updated_at", "2016-12-19 19:57:24.052812"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:57:24.057129"], ["updated_at", "2016-12-19 19:57:24.057129"], ["bumped_at", "2016-12-19 19:57:24.057401"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 6[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 6"], ["seo_name", "board6"], ["created_at", "2016-12-19 19:57:24.071577"], ["updated_at", "2016-12-19 19:57:24.071577"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.076710"], ["updated_at", "2016-12-19 19:57:24.076710"], ["bumped_at", "2016-12-19 19:57:24.076994"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.081371"], ["updated_at", "2016-12-19 19:57:24.081371"], ["bumped_at", "2016-12-19 19:57:24.081646"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.085832"], ["updated_at", "2016-12-19 19:57:24.085832"], ["bumped_at", "2016-12-19 19:57:24.086097"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.090196"], ["updated_at", "2016-12-19 19:57:24.090196"], ["bumped_at", "2016-12-19 19:57:24.090466"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.094586"], ["updated_at", "2016-12-19 19:57:24.094586"], ["bumped_at", "2016-12-19 19:57:24.094917"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 3[0m  [["board_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 3)  [["board_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT  "topics"."id" FROM "topics"  ORDER BY "topics"."id" ASC LIMIT 2[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 7"], ["seo_name", "board7"], ["config", "---\nfoo: 7\n"], ["created_at", "2016-12-19 19:57:24.127038"], ["updated_at", "2016-12-19 19:57:24.127038"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 8"], ["seo_name", "board8"], ["created_at", "2016-12-19 19:57:24.133077"], ["updated_at", "2016-12-19 19:57:24.133077"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 9"], ["seo_name", "board9"], ["config", "---\nfoo: 9\n"], ["created_at", "2016-12-19 19:57:24.137840"], ["updated_at", "2016-12-19 19:57:24.137840"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 10"], ["seo_name", "board10"], ["created_at", "2016-12-19 19:57:24.145535"], ["updated_at", "2016-12-19 19:57:24.145535"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.150377"], ["updated_at", "2016-12-19 19:57:24.150377"], ["bumped_at", "2016-12-19 19:57:24.150653"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.0ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'images'
+  [1m[36m (0.0ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'replies'[0m
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "options_raw", "options", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "foo"], ["content_html", "<p>foo</p>"], ["options_raw", "sage"], ["options", "---\n- sage\n"], ["created_at", "2016-12-19 19:57:29.155701"], ["updated_at", "2016-12-19 19:57:29.155701"], ["pos", 1]]
+  [1m[35mSQL (0.0ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTopic Load (0.0ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 11"], ["seo_name", "board11"], ["created_at", "2016-12-19 19:57:24.355333"], ["updated_at", "2016-12-19 19:57:24.355333"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 12"], ["seo_name", "board12"], ["created_at", "2016-12-19 19:57:24.364163"], ["updated_at", "2016-12-19 19:57:24.364163"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 13"], ["seo_name", "board13"], ["created_at", "2016-12-19 19:57:24.373206"], ["updated_at", "2016-12-19 19:57:24.373206"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.378028"], ["updated_at", "2016-12-19 19:57:24.378028"], ["bumped_at", "2016-12-19 19:57:24.378316"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:57:24.389931"], ["updated_at", "2016-12-19 19:57:24.389931"]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.392454', "bumped_at" = '2016-12-19 19:57:24.392454' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1  [["topic_id", 1]]
+  [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:57:24.421550"], ["updated_at", "2016-12-19 19:57:24.421550"], ["pos", 2]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.427155', "bumped_at" = '2016-12-19 19:57:24.427155' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" IN (1, 2)[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1\n > 2 bar"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a></quote>\n<br /> <a href=\"/board13/topics/1#p-1-2\">&gt; 2</a> bar</p>"], ["created_at", "2016-12-19 19:57:24.461364"], ["updated_at", "2016-12-19 19:57:24.461364"], ["pos", 3]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 3]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.469424', "bumped_at" = '2016-12-19 19:57:24.469424' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 3 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?  [["ancestor_id", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?[0m  [["ancestor_id", 2]]
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 14"], ["seo_name", "board14"], ["created_at", "2016-12-19 19:57:24.492267"], ["updated_at", "2016-12-19 19:57:24.492267"]]
+  [1m[35m (0.5ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:57:24.498740"], ["updated_at", "2016-12-19 19:57:24.498740"], ["bumped_at", "2016-12-19 19:57:24.499032"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:57:24.511920"], ["updated_at", "2016-12-19 19:57:24.511920"]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.514276', "bumped_at" = '2016-12-19 19:57:24.514276' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:57:24.537964"], ["updated_at", "2016-12-19 19:57:24.537964"], ["pos", 2]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.542977', "bumped_at" = '2016-12-19 19:57:24.542977' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "max_pos" = 42 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "posts" SET "pos" = 42 WHERE "posts"."id" = ?  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 42  [["topic_id", 1]]
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 42 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-42\">&gt; 42</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:57:24.571205"], ["updated_at", "2016-12-19 19:57:24.571205"], ["pos", 43]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.576522', "bumped_at" = '2016-12-19 19:57:24.576522' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 43 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 15"], ["seo_name", "board15"], ["created_at", "2016-12-19 19:57:24.585372"], ["updated_at", "2016-12-19 19:57:24.585372"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "topics" ("title", "board_id", "locked", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["locked", "t"], ["created_at", "2016-12-19 19:57:24.589769"], ["updated_at", "2016-12-19 19:57:24.589769"], ["bumped_at", "2016-12-19 19:57:24.590066"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 16"], ["seo_name", "board16"], ["created_at", "2016-12-19 19:57:24.613082"], ["updated_at", "2016-12-19 19:57:24.613082"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.2ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", "2016-12-19 19:57:24.627711"], ["updated_at", "2016-12-19 19:57:24.627711"], ["bumped_at", "2016-12-19 19:57:24.628086"]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:57:24.634514"], ["updated_at", "2016-12-19 19:57:24.634514"], ["pos", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.636846', "bumped_at" = '2016-12-19 19:57:24.636846' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 17"], ["seo_name", "board17"], ["created_at", "2016-12-19 19:57:24.649324"], ["updated_at", "2016-12-19 19:57:24.649324"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: board_id, images
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 18"], ["seo_name", "board18"], ["created_at", "2016-12-19 19:57:24.754646"], ["updated_at", "2016-12-19 19:57:24.754646"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 19"], ["seo_name", "board19"], ["created_at", "2016-12-19 19:57:24.771019"], ["updated_at", "2016-12-19 19:57:24.771019"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", "2016-12-19 19:57:24.786059"], ["updated_at", "2016-12-19 19:57:24.786059"], ["bumped_at", "2016-12-19 19:57:24.786430"]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:57:24.794199"], ["updated_at", "2016-12-19 19:57:24.794199"], ["pos", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:57:24.796762', "bumped_at" = '2016-12-19 19:57:24.796762' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 20"], ["seo_name", "board20"], ["created_at", "2016-12-19 19:57:24.811576"], ["updated_at", "2016-12-19 19:57:24.811576"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 21"], ["seo_name", "board21"], ["created_at", "2016-12-19 19:57:24.830454"], ["updated_at", "2016-12-19 19:57:24.830454"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (1.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 22"], ["seo_name", "board22"], ["created_at", "2016-12-19 19:57:24.847990"], ["updated_at", "2016-12-19 19:57:24.847990"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 23"], ["seo_name", "board23"], ["created_at", "2016-12-19 19:57:24.865019"], ["updated_at", "2016-12-19 19:57:24.865019"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.6ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'schema_migrations'
+  [1m[36m (0.8ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'posts'[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'boards'[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 1"], ["seo_name", "board1"], ["created_at", "2016-12-19 19:58:52.662235"], ["updated_at", "2016-12-19 19:58:52.662235"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'topics'[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.698296"], ["updated_at", "2016-12-19 19:58:52.698296"], ["bumped_at", "2016-12-19 19:58:52.698659"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.703802"], ["updated_at", "2016-12-19 19:58:52.703802"], ["bumped_at", "2016-12-19 19:58:52.704078"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.708685"], ["updated_at", "2016-12-19 19:58:52.708685"], ["bumped_at", "2016-12-19 19:58:52.708962"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.713191"], ["updated_at", "2016-12-19 19:58:52.713191"], ["bumped_at", "2016-12-19 19:58:52.713463"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.717963"], ["updated_at", "2016-12-19 19:58:52.717963"], ["bumped_at", "2016-12-19 19:58:52.718238"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 4[0m  [["board_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 2)  [["board_id", 1]]
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 1[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 2"], ["seo_name", "board2"], ["created_at", "2016-12-19 19:58:52.808024"], ["updated_at", "2016-12-19 19:58:52.808024"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.813789"], ["updated_at", "2016-12-19 19:58:52.813789"], ["bumped_at", "2016-12-19 19:58:52.814073"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.818416"], ["updated_at", "2016-12-19 19:58:52.818416"], ["bumped_at", "2016-12-19 19:58:52.818742"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.823286"], ["updated_at", "2016-12-19 19:58:52.823286"], ["bumped_at", "2016-12-19 19:58:52.823644"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.828278"], ["updated_at", "2016-12-19 19:58:52.828278"], ["bumped_at", "2016-12-19 19:58:52.828590"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.833201"], ["updated_at", "2016-12-19 19:58:52.833201"], ["bumped_at", "2016-12-19 19:58:52.833501"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 3"], ["seo_name", "board3"], ["created_at", "2016-12-19 19:58:52.837787"], ["updated_at", "2016-12-19 19:58:52.837787"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:58:52.843009"], ["updated_at", "2016-12-19 19:58:52.843009"], ["bumped_at", "2016-12-19 19:58:52.843331"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.5ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" ASC LIMIT 1[0m  [["board_id", 1]]
+  [1m[35mTopic Load (0.4ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 1  [["board_id", 1]]
+  [1m[36mTopic Load (0.9ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" IN (1, 5)[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ?[0m  [["topic_id", 5]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "topics" WHERE "topics"."id" = ?  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "topics" WHERE "topics"."board_id" = ?[0m  [["board_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 4"], ["seo_name", "board4"], ["created_at", "2016-12-19 19:58:52.873743"], ["updated_at", "2016-12-19 19:58:52.873743"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.879062"], ["updated_at", "2016-12-19 19:58:52.879062"], ["bumped_at", "2016-12-19 19:58:52.879405"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.884065"], ["updated_at", "2016-12-19 19:58:52.884065"], ["bumped_at", "2016-12-19 19:58:52.884369"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.888972"], ["updated_at", "2016-12-19 19:58:52.888972"], ["bumped_at", "2016-12-19 19:58:52.889276"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.893832"], ["updated_at", "2016-12-19 19:58:52.893832"], ["bumped_at", "2016-12-19 19:58:52.894134"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.898839"], ["updated_at", "2016-12-19 19:58:52.898839"], ["bumped_at", "2016-12-19 19:58:52.899154"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 5"], ["seo_name", "board5"], ["created_at", "2016-12-19 19:58:52.904202"], ["updated_at", "2016-12-19 19:58:52.904202"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 2], ["created_at", "2016-12-19 19:58:52.909970"], ["updated_at", "2016-12-19 19:58:52.909970"], ["bumped_at", "2016-12-19 19:58:52.910306"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."board_id" = ? AND "topics"."id" = 6[0m  [["board_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  [["board_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 6"], ["seo_name", "board6"], ["created_at", "2016-12-19 19:58:52.924889"], ["updated_at", "2016-12-19 19:58:52.924889"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.930884"], ["updated_at", "2016-12-19 19:58:52.930884"], ["bumped_at", "2016-12-19 19:58:52.931209"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.935627"], ["updated_at", "2016-12-19 19:58:52.935627"], ["bumped_at", "2016-12-19 19:58:52.935972"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.940131"], ["updated_at", "2016-12-19 19:58:52.940131"], ["bumped_at", "2016-12-19 19:58:52.940403"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.944546"], ["updated_at", "2016-12-19 19:58:52.944546"], ["bumped_at", "2016-12-19 19:58:52.944821"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:52.948937"], ["updated_at", "2016-12-19 19:58:52.948937"], ["bumped_at", "2016-12-19 19:58:52.949231"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT  "topics"."id" FROM "topics" WHERE "topics"."board_id" = ?  ORDER BY "topics"."id" DESC LIMIT 3[0m  [["board_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT "topics"."id" FROM "topics" WHERE "topics"."board_id" = ? AND (id < 3)  [["board_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT  "topics"."id" FROM "topics"  ORDER BY "topics"."id" ASC LIMIT 2[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 7"], ["seo_name", "board7"], ["config", "---\nfoo: 7\n"], ["created_at", "2016-12-19 19:58:52.979376"], ["updated_at", "2016-12-19 19:58:52.979376"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 8"], ["seo_name", "board8"], ["created_at", "2016-12-19 19:58:52.985335"], ["updated_at", "2016-12-19 19:58:52.985335"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "config", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Board 9"], ["seo_name", "board9"], ["config", "---\nfoo: 9\n"], ["created_at", "2016-12-19 19:58:52.990139"], ["updated_at", "2016-12-19 19:58:52.990139"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 10"], ["seo_name", "board10"], ["created_at", "2016-12-19 19:58:52.998589"], ["updated_at", "2016-12-19 19:58:52.998589"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:53.004148"], ["updated_at", "2016-12-19 19:58:53.004148"], ["bumped_at", "2016-12-19 19:58:53.004504"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.0ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  select sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'images'
+  [1m[36m (0.0ms)[0m  [1mselect sql from (select * from sqlite_master where type='table' union select * from sqlite_temp_master where type='table') where tbl_name = 'replies'[0m
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "options_raw", "options", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "foo"], ["content_html", "<p>foo</p>"], ["options_raw", "sage"], ["options", "---\n- sage\n"], ["created_at", "2016-12-19 19:58:58.009480"], ["updated_at", "2016-12-19 19:58:58.009480"], ["pos", 1]]
+  [1m[35mSQL (0.0ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTopic Load (0.0ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 11"], ["seo_name", "board11"], ["created_at", "2016-12-19 19:58:53.207109"], ["updated_at", "2016-12-19 19:58:53.207109"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 12"], ["seo_name", "board12"], ["created_at", "2016-12-19 19:58:53.218041"], ["updated_at", "2016-12-19 19:58:53.218041"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 13"], ["seo_name", "board13"], ["created_at", "2016-12-19 19:58:53.226945"], ["updated_at", "2016-12-19 19:58:53.226945"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:53.233596"], ["updated_at", "2016-12-19 19:58:53.233596"], ["bumped_at", "2016-12-19 19:58:53.233893"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:58:53.246756"], ["updated_at", "2016-12-19 19:58:53.246756"]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.249319', "bumped_at" = '2016-12-19 19:58:53.249319' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1  [["topic_id", 1]]
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:58:53.278962"], ["updated_at", "2016-12-19 19:58:53.278962"], ["pos", 2]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.284642', "bumped_at" = '2016-12-19 19:58:53.284642' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.8ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" IN (1, 2)[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.2ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1\n > 2 bar"], ["content_html", "<p><quote><a href=\"/board13/topics/1#p-1-1\">&gt; 1</a></quote>\n<br /> <a href=\"/board13/topics/1#p-1-2\">&gt; 2</a> bar</p>"], ["created_at", "2016-12-19 19:58:53.318939"], ["updated_at", "2016-12-19 19:58:53.318939"], ["pos", 3]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 3]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.326807', "bumped_at" = '2016-12-19 19:58:53.326807' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 3 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?  [["ancestor_id", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" INNER JOIN "replies" ON "posts"."id" = "replies"."descendant_id" WHERE "replies"."ancestor_id" = ?[0m  [["ancestor_id", 2]]
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 14"], ["seo_name", "board14"], ["created_at", "2016-12-19 19:58:53.348670"], ["updated_at", "2016-12-19 19:58:53.348670"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "topics" ("title", "board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["created_at", "2016-12-19 19:58:53.353762"], ["updated_at", "2016-12-19 19:58:53.353762"], ["bumped_at", "2016-12-19 19:58:53.354110"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "content_html", "pos", "email", "topic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["content", "first post"], ["content_html", "<p>first post</p>"], ["pos", 1], ["email", "foo@example.com"], ["topic_id", 1], ["created_at", "2016-12-19 19:58:53.364982"], ["updated_at", "2016-12-19 19:58:53.364982"]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.367340', "bumped_at" = '2016-12-19 19:58:53.367340' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 1[0m  [["topic_id", 1]]
+  [1m[35mTopic Load (0.1ms)[0m  SELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["topic_id", 1], ["content", "> 1 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-1\">&gt; 1</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:58:53.389959"], ["updated_at", "2016-12-19 19:58:53.389959"], ["pos", 2]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)[0m  [["ancestor_id", 1], ["descendant_id", 2]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.395100', "bumped_at" = '2016-12-19 19:58:53.395100' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "max_pos" = 2 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "max_pos" = 42 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "posts" SET "pos" = 42 WHERE "posts"."id" = ?  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND "posts"."pos" = 42  [["topic_id", 1]]
+  [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  "topics".* FROM "topics" WHERE "topics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.2ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("topic_id", "content", "content_html", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["topic_id", 1], ["content", "> 42 foo"], ["content_html", "<p><quote><a href=\"/board14/topics/1#p-1-42\">&gt; 42</a> foo</quote>\n</p>"], ["created_at", "2016-12-19 19:58:53.422421"], ["updated_at", "2016-12-19 19:58:53.422421"], ["pos", 43]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "replies" ("ancestor_id", "descendant_id") VALUES (?, ?)  [["ancestor_id", 2], ["descendant_id", 3]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.428231', "bumped_at" = '2016-12-19 19:58:53.428231' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "max_pos" = 43 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 15"], ["seo_name", "board15"], ["created_at", "2016-12-19 19:58:53.438022"], ["updated_at", "2016-12-19 19:58:53.438022"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "topics" ("title", "board_id", "locked", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?, ?, ?)  [["title", "Lorem Ipsum"], ["board_id", 1], ["locked", "t"], ["created_at", "2016-12-19 19:58:53.442850"], ["updated_at", "2016-12-19 19:58:53.442850"], ["bumped_at", "2016-12-19 19:58:53.443204"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 16"], ["seo_name", "board16"], ["created_at", "2016-12-19 19:58:53.466366"], ["updated_at", "2016-12-19 19:58:53.466366"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", "2016-12-19 19:58:53.479175"], ["updated_at", "2016-12-19 19:58:53.479175"], ["bumped_at", "2016-12-19 19:58:53.479520"]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)[0m  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:58:53.485921"], ["updated_at", "2016-12-19 19:58:53.485921"], ["pos", 1]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:58:53.488352', "bumped_at" = '2016-12-19 19:58:53.488352' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0  [["topic_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Board 17"], ["seo_name", "board17"], ["created_at", "2016-12-19 19:58:53.500596"], ["updated_at", "2016-12-19 19:58:53.500596"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBoard Load (0.1ms)[0m  [1mSELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: board_id, images
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", "2016-12-19 19:59:04.820027"], ["updated_at", "2016-12-19 19:59:04.820027"], ["bumped_at", "2016-12-19 19:59:04.820413"]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?)  [["topic_id", 1], ["created_at", "2016-12-19 19:59:04.824793"], ["updated_at", "2016-12-19 19:59:04.824793"], ["pos", 1]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "images" ("image", "width", "height", "thumb_width", "thumb_height", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["image", "1482177544_sample.jpeg"], ["width", 1500], ["height", 1125], ["thumb_width", 250], ["thumb_height", 188], ["post_id", 1], ["created_at", "2016-12-19 19:59:04.830215"], ["updated_at", "2016-12-19 19:59:04.830215"]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "topics" SET "updated_at" = '2016-12-19 19:59:04.836044', "bumped_at" = '2016-12-19 19:59:04.836044' WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 18"], ["seo_name", "board18"], ["created_at", "2016-12-19 19:59:04.847227"], ["updated_at", "2016-12-19 19:59:04.847227"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.2ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 19"], ["seo_name", "board19"], ["created_at", "2016-12-19 19:59:04.863311"], ["updated_at", "2016-12-19 19:59:04.863311"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "topics" ("board_id", "created_at", "updated_at", "bumped_at") VALUES (?, ?, ?, ?)  [["board_id", 1], ["created_at", "2016-12-19 19:59:04.878157"], ["updated_at", "2016-12-19 19:59:04.878157"], ["bumped_at", "2016-12-19 19:59:04.878592"]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "content_html", "topic_id", "created_at", "updated_at", "pos") VALUES (?, ?, ?, ?, ?, ?)  [["content", "hi"], ["content_html", "<p>hi</p>"], ["topic_id", 1], ["created_at", "2016-12-19 19:59:04.887616"], ["updated_at", "2016-12-19 19:59:04.887616"], ["pos", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "topics" SET "updated_at" = '2016-12-19 19:59:04.890140', "bumped_at" = '2016-12-19 19:59:04.890140' WHERE "topics"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.4ms)[0m  UPDATE "topics" SET "max_pos" = 1 WHERE "topics"."id" = ?  [["id", 1]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."topic_id" = ? AND 1=0[0m  [["topic_id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 20"], ["seo_name", "board20"], ["created_at", "2016-12-19 19:59:04.904307"], ["updated_at", "2016-12-19 19:59:04.904307"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 21"], ["seo_name", "board21"], ["created_at", "2016-12-19 19:59:04.923365"], ["updated_at", "2016-12-19 19:59:04.923365"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 22"], ["seo_name", "board22"], ["created_at", "2016-12-19 19:59:04.939521"], ["updated_at", "2016-12-19 19:59:04.939521"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.1ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "boards" ("name", "seo_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Board 23"], ["seo_name", "board23"], ["created_at", "2016-12-19 19:59:04.955453"], ["updated_at", "2016-12-19 19:59:04.955453"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBoard Load (0.2ms)[0m  SELECT  "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameter: board_id
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m

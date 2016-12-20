@@ -1,0 +1,21 @@
+I"G(function() {
+  $(function() {
+    var $document;
+    $document = $(document);
+    $document.on('ajax:before', 'form#new_post', function() {
+      return $('form img.loading').show();
+    });
+    $document.on('ajax:error', 'form#new_post', function(event, data, status, xhr) {
+      return $('form img.loading').hide();
+    });
+    return $document.on('ajax:success', 'form#new_post', function(event, data, status, xhr) {
+      if (data['success']) {
+        return location.reload();
+      } else {
+        return $('form img.loading').hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

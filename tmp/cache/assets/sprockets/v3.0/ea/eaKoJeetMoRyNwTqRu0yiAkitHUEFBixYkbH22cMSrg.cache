@@ -1,0 +1,43 @@
+I"‘(function() {
+  var PostHandle;
+
+  PostHandle = (function() {
+    function PostHandle(container) {
+      var $container, filter, i, len, ref;
+      this.container = container;
+      $container = $(this.container);
+      ref = this.constructor.filters;
+      for (i = 0, len = ref.length; i < len; i++) {
+        filter = ref[i];
+        filter($container);
+      }
+    }
+
+    PostHandle.filters = [];
+
+    PostHandle.register = function(filter) {
+      return this.filters.push(filter);
+    };
+
+    PostHandle.apply = function() {
+      return $('article.post').each(function(index, postEl) {
+        var $postEl;
+        $postEl = $(postEl);
+        if (!$postEl.data('handle')) {
+          return $postEl.data('handle', new PostHandle(postEl));
+        }
+      });
+    };
+
+    return PostHandle;
+
+  })();
+
+  window.PostHandle = PostHandle;
+
+  $(function() {
+    return PostHandle.apply();
+  });
+
+}).call(this);
+:ET

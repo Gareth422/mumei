@@ -1,0 +1,25 @@
+I"(function() {
+  $(document).on('click', 'article.post a.img', function(e) {
+    var a, fullImageUrl;
+    e.preventDefault();
+    a = $(this);
+    fullImageUrl = this.href;
+    a.parents('article.post').addClass('full');
+    $("<img>", {
+      src: fullImageUrl,
+      "class": 'full'
+    }).insertAfter(a);
+    return a.hide();
+  });
+
+  $(document).on('click', 'article.post img.full', function(e) {
+    var a, img;
+    e.preventDefault();
+    img = $(this);
+    a = img.prev();
+    img.remove();
+    return a.show();
+  });
+
+}).call(this);
+:ET
